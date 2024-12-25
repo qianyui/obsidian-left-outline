@@ -29,18 +29,26 @@ export default class LeftOutlinePlugin extends Plugin {
 
         // 如果找到大纲视图，将其移动到左侧
         if (outlineLeaf) {
-            // 获取左侧边栏
-            const leftSplit = this.app.workspace.leftSplit;
-            
-            // 将大纲视图移动到左侧
-            await this.app.workspace.moveLeaf(outlineLeaf, leftSplit, 0);
+            // 创建新的左侧大纲视图
+            const newLeaf = this.app.workspace.getLeftLeaf(false);
+            if (newLeaf) {
+                await newLeaf.setViewState({
+                    type: 'outline',
+                    active: true
+                });
+                
+                // 关闭原有的大纲视图
+                outlineLeaf.detach();
+            }
         } else {
             // 如果没有找到现有的大纲视图，创建一个新的
             const leaf = this.app.workspace.getLeftLeaf(false);
-            await leaf.setViewState({
-                type: 'outline',
-                active: true
-            });
+            if (leaf) {
+                await leaf.setViewState({
+                    type: 'outline',
+                    active: true
+                });
+            }
         }
     }
 
@@ -57,11 +65,17 @@ export default class LeftOutlinePlugin extends Plugin {
         );
 
         if (outlineLeaf) {
-            // 获取右侧边栏
-            const rightSplit = this.app.workspace.rightSplit;
-            
-            // 将大纲视图移动到右侧
-            await this.app.workspace.moveLeaf(outlineLeaf, rightSplit, 0);
+            // 创建新的右侧大纲视图
+            const newLeaf = this.app.workspace.getRightLeaf(false);
+            if (newLeaf) {
+                await newLeaf.setViewState({
+                    type: 'outline',
+                    active: true
+                });
+                
+                // 关闭原有的大纲视图
+                outlineLeaf.detach();
+            }
         }
     }
 }
