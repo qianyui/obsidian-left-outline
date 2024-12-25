@@ -1,0 +1,9 @@
+{
+  "id": "left-outline",
+  "name": "Left Outline",
+  "version": "1.0.0",
+  "minAppVersion": "0.15.0",
+  "description": "Move outline to left sidebar",
+  "author": "diudiu",
+  "isDesktopOnly": false
+}

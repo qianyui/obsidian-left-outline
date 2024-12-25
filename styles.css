@@ -1,0 +1,10 @@
+/* 自定义大纲在左侧时的样式 */
+.workspace-leaf-content[data-type="outline"] {
+    padding: 0 10px;
+}
+
+/* 确保大纲视图在左侧时的宽度合适 */
+.workspace-leaf-content[data-type="outline"] .outline {
+    max-width: 100%;
+    margin: 0;
+}
